@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Pratique nexoLink</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .fiche-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6B46C1 0%, #9333EA 100%);
+            color: white;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-50px) translateY(-50px); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .fiche-type {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .content {
+            padding: 40px;
+            text-align: justify;
+        }
+        
+        /* Objectif */
+        .objectif-box {
+            background: linear-gradient(135deg, #F0FDF4 0%, #ECFDF5 100%);
+            border-left: 4px solid #10B981;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 35px;
+        }
+        
+        .objectif-header {
+            color: #10B981;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .objectif-icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        /* Sections */
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            color: #6B46C1;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #6B46C1, #9333EA);
+            border-radius: 2px;
+            margin-right: 12px;
+        }
+        
+        .section-content {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        
+        .section-content p {
+            margin-bottom: 15px;
+        }
+        
+        .section-content ul, .section-content ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .section-content li {
+            margin-bottom: 8px;
+        }
+        
+        .section-content strong {
+            color: #6B46C1;
+        }
+        
+        /* Points d'attention */
+        .attention-box {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-left: 4px solid #F59E0B;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 30px 0;
+        }
+        
+        .attention-header {
+            color: #F59E0B;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .attention-icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        .attention-box ul {
+            margin-left: 20px;
+        }
+        
+        .attention-box li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .footer {
+            background: #F9FAFB;
+            padding: 25px 40px;
+            border-top: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-weight: 600;
+            color: #6B46C1;
+            font-size: 18px;
+        }
+        
+        .footer-text {
+            font-size: 12px;
+            color: #6B7280;
+        }
+        
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            body { background: white !important; }
+            .fiche-container { box-shadow: none !important; margin: 0 !important; border-radius: 0 !important; width: 100% !important; }
+            .header::before { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="fiche-container">
+        <div class="header">
+            <div class="header-content">
+                <div class="header-top">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#6B46C1">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <div class="logo-text">nexoLink</div>
+                    </div>
+                    <div class="fiche-type">FICHE PRATIQUE</div>
+                </div>
+                <div class="title">Préparer son premier RDV avec son nouveau client</div>
+                <div class="subtitle">Guide pour la préparation d'une mission de pilotage</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Objectif -->
+            <div class="objectif-box">
+                <div class="objectif-header">
+                    <span class="objectif-icon">🎯</span>
+                    <strong>Objectif :</strong>
+                </div>
+                <div>Recueillir l’ensemble des <strong>informations financières et opérationnelles clés</strong> pour analyser la situation de l’entreprise et établir un <strong>prévisionnel d’activité</strong> précis et actionnable.</div>
+            </div>
+            
+            <!-- Section 1 -->
+            <div class="section">
+                <div class="section-title">Documents à demander à son client</div>
+                <div class="section-content">
+                    <p>Avant le premier rendez-vous, sollicitez les documents suivants. Certains devront être demandés directement au <strong>cabinet comptable</strong> du client :</p>
+                    <ol>
+                        <li><strong>Bilan ou états financiers N-1 et N-2</strong></li>
+                        <li><strong>Fichier des Écritures Comptables (FEC)</strong> des deux derniers exercices et celui de l'année en cours (arrêté au dernier jour du mois précédent).  
+                            <br>Si non disponible, demander la <strong>balance générale</strong> et le <strong>grand livre général</strong> pour les mêmes périodes.
+                        </li>
+                        <li><strong>Bulletins de salaires</strong> de décembre N-1 pour tout le personnel et ceux du dernier mois en cours.</li>
+                        <li><strong>Tableau détaillé des immobilisations</strong> avec amortissements.</li>
+                        <li><strong>Liste des contrats de leasing</strong> avec leurs échéanciers.</li>
+                        <li><strong>Tableaux d’amortissement des prêts en cours</strong>.</li>
+                        <li><strong>Chiffre d’affaires mensuel</strong> sur le dernier exercice comptable.</li>
+                        <li><strong>Dépenses d’investissement</strong> réalisées ou prévues pour l'année en cours, incluant les <strong>ressources humaines</strong>.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- Section 2 -->
+            <div class="section">
+                <div class="section-title">Analyse des données et préparation de la feuille de route</div>
+                <div class="section-content">
+                    <p>À partir des documents collectés, utilisez <strong>nexoPilot</strong> (ou un outil équivalent) pour :</p>
+                    <ul>
+                        <li>Établir les <strong>budgets de dépenses</strong> : amortissements, crédits-baux, rémunérations, frais généraux, achats matières, hors budget, etc.</li>
+                        <li>Construire une <strong>structure de coûts</strong> et un <strong>prévisionnel des dépenses</strong> permettant de définir des objectifs mensuels de chiffre d'affaires et de marge.</li>
+                        <li>Produire des <strong>coûts de revient</strong> et préparer les paramètres pour des outils d'analyse, comme <em>nexoDevis</em>.</li>
+                    </ul>
+                    <p>Cette analyse servira de base à la <strong>feuille de route financière</strong> de l'entreprise.</p>
+                </div>
+            </div>
+            
+            <!-- Section 3 -->
+            <div class="section">
+                <div class="section-title">Préparer ses livrables</div>
+                <div class="section-content">
+                    <p>Pour le premier rendez-vous, il est recommandé de préparer et présenter :</p>
+                    <ul>
+                        <li>La <strong>liste des dépenses budgétées annuelles</strong> pour sensibiliser le client aux coûts.</li>
+                        <li>La <strong>saisonnalité du chiffre d’affaires</strong> et ses impacts sur la trésorerie et la planification.</li>
+                        <li>Le <strong>coût de revient horaire</strong> et sa décomposition (charges de structure et de production).</li>
+                        <li>Un <strong>prévisionnel d’activité</strong> incluant un compte de résultat prévisionnel.</li>
+                        <li>L'identification et la simulation de <strong>leviers d’amélioration</strong> pour anticiper leurs impacts.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Section 4 -->
+            <div class="section">
+                <div class="section-title">Le rendez-vous</div>
+                <div class="section-content">
+                    <p>Lors du rendez-vous :</p>
+                    <ul>
+                        <li>Présentez et expliquez les livrables préparés.</li>
+                        <li>Recueillez les <strong>questions et commentaires</strong> du client pour valider sa compréhension.</li>
+                        <li>Expliquez que la <strong>feuille de route</strong> sera suivie régulièrement, avec une comparaison des dépenses et revenus réels par rapport au budget.</li>
+                        <li>Précisez que les budgets pourront être <strong>ajustés</strong> pour refléter la réalité et affiner les estimations de résultat et de rentabilité.</li>
+                        <li>Présentez les <strong>indicateurs clés</strong> et leur interprétation, qui pourront être envoyés périodiquement au client.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Points d'attention -->
+            <div class="attention-box">
+                <div class="attention-header">
+                    <span class="attention-icon">⚠️</span>
+                    <strong>Points d'attention</strong>
+                </div>
+                <ul>
+                    <li>Analyser finement le <strong>FEC</strong> et le <strong>grand livre</strong> pour distinguer dépenses exceptionnelles et récurrentes.</li>
+                    <li>Étudier la <strong>saisonnalité</strong> sur plusieurs exercices ou en discuter avec le dirigeant (nexoPilot peut la calculer automatiquement).</li>
+                    <li>Ne pas vouloir tout montrer dès le premier RDV : garder l'attention et la motivation du dirigeant.</li>
+                    <li>Poser des questions ouvertes pour détecter les incompréhensions et y répondre clairement.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-logo">nexoLink</div>
+            <div class="footer-text">Consultants en contrôle de gestion opérationnel</div>
+        </div>
+    </div>
+</body>
+</html>
